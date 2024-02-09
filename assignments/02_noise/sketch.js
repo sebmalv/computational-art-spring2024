@@ -2,13 +2,10 @@
 //takes in which direction
 
 
-let thing
-let rightdown;
-// p5 calls this function when the webpage is loaded. Think of this
-// function as the place you initialize the sketch.
-let x, y; // Position of the ball
+let x, y; // Position of the square
 let xNoise, yNoise; // Noise values for smoother movement
-let diameter = 50; // Diameter of the ball
+let colorNoise; // Noise value for color variation
+let sideLength = 50; // Side length of the square
 
 function setup() {
   createCanvas(400, 400);
@@ -16,6 +13,7 @@ function setup() {
   y = height / 2;
   xNoise = random(10);
   yNoise = random(10);
+  colorNoise = random(10);
 }
 
 function draw() {
@@ -24,14 +22,20 @@ function draw() {
   // Update noise values
   xNoise += 0.01;
   yNoise += 0.01;
+  colorNoise += 0.01;
 
-  // Move the ball using noise
-  x = map(noise(xNoise), 0, 1, 0, width - diameter);
-  y = map(noise(yNoise), 0, 1, 0, height - diameter);
+  // Move the square using noise
+  x = map(noise(xNoise), 0, 1, 0, width - sideLength);
+  y = map(noise(yNoise), 0, 1, 0, height - sideLength);
 
-  // Draw the ball
-  fill(0, 150, 255);
-  ellipse(x, y, diameter, diameter);
+  // Generate color with noise
+  let r = map(noise(colorNoise), 0, 1, 0, 255);
+  let g = map(noise(colorNoise + 10), 0, 1, 0, 255);
+  let b = map(noise(colorNoise + 20), 0, 1, 0, 255);
+
+  // Draw the square with changing color
+  fill(r, g, b);
+  rect(x, y, sideLength, sideLength);
 }
 
 ///
