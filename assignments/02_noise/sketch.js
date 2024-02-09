@@ -14,6 +14,9 @@ function setup() {
   xNoise = random(10);
   yNoise = random(10);
   colorNoise = random(10);
+  colorMode(HSB);
+  
+  noStroke();
 }
 
 function draw() {
