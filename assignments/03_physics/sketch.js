@@ -8,8 +8,8 @@ function setup() {
 }
 
 function draw() {
-  background(255); // White background for the soup
-  
+  background('#B0E57C'); // Light green background for the soup
+
   for (let animal of animals) {
     animal.move();
     animal.display();
