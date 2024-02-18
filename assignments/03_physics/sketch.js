@@ -36,11 +36,32 @@ class Animal {
 
   display() {
     fill(this.color);
+
+    // Body
     ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
-    // Draw a cute face
-    fill(255);
-    ellipse(this.x - this.radius * 0.2, this.y - this.radius * 0.2, this.radius * 0.5, this.radius * 0.5);
-    ellipse(this.x + this.radius * 0.2, this.y - this.radius * 0.2, this.radius * 0.5, this.radius * 0.5);
-    arc(this.x, this.y + this.radius * 0.1, this.radius * 1, this.radius * 0.8, 0, PI, CHORD);
+
+    // Ears
+    triangle(
+      this.x - this.radius * 0.7, this.y - this.radius * 0.5,
+      this.x - this.radius * 0.2, this.y - this.radius * 1.2,
+      this.x - this.radius * 0.4, this.y - this.radius * 0.5
+    );
+    triangle(
+      this.x + this.radius * 0.7, this.y - this.radius * 0.5,
+      this.x + this.radius * 0.2, this.y - this.radius * 1.2,
+      this.x + this.radius * 0.4, this.y - this.radius * 0.5
+    );
+
+    // Eyes
+    fill(0);
+    ellipse(this.x - this.radius * 0.3, this.y - this.radius * 0.2, this.radius * 0.2, this.radius * 0.2);
+    ellipse(this.x + this.radius * 0.3, this.y - this.radius * 0.2, this.radius * 0.2, this.radius * 0.2);
+
+    // Nose
+    triangle(
+      this.x, this.y - this.radius * 0.1,
+      this.x - this.radius * 0.05, this.y + this.radius * 0.2,
+      this.x + this.radius * 0.05, this.y + this.radius * 0.2
+    );
   }
 }
