@@ -14,11 +14,12 @@ let redTint= 255;
 let eastCircle, westCircle, northCircle, southCircle;
 
 let imageNames = [
-  'imix.jpg', 'ik.jpg', 'akbal.jpg', 'kan.jpg', 'chikchan.jpg', // daysigns of the Tzolk'in
-  'kimi.jpg', 'manik.jpg', 'lamat.jpg', 'muluk.jpg', 'oc.jpg',
-  'chuen.jpg', 'eb.jpg', 'ben.jpg', 'ix.jpg', 'men.jpg',
-  'kib.jpg', 'kaban.jpg', 'etznab.jpg', 'kawak.jpg', 'ahua.jpg'
+  './images/imix.jpg', './images/ik.jpg', './images/akbal.jpg', './images/kan.jpg', './images/chikchan.jpg', // daysigns of the Tzolk'in
+  './images/kimi.jpg', './images/manik.jpg', './images/lamat.jpg', './images/muluk.jpg', './images/oc.jpg',
+  './images/chuen.jpg', './images/eb.jpg', './images/ben.jpg', './images/ix.jpg', './images/men.jpg',
+  './images/kib.jpg', './images/kaban.jpg', './images/etznab.jpg', './images/kawak.jpg', './images/ahua.jpg'
 ];
+
 
 let fluteNotes = ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4']; //flute notes
 let fluteFreqs = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88]; // flute scale
