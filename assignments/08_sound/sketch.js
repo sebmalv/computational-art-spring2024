@@ -35,6 +35,15 @@ let osc; //sound
 let modFreq = 5; 
 let modDepth = 10; 
 
+function preload() {
+  // image load
+  for (let i = 0; i < imageNames.length; i++) {
+    images.push(loadImage(imageNames[i]));
+  }
+  for (let i = 0; i < soundFileNames.length; i++) {
+    soundFiles.push(loadSound('./sounds/' + soundFileNames[i]));
+  }
+}
 
 
 function setup() {
@@ -90,7 +99,17 @@ function draw() {
   // images around the border
   let imageSize = width / 6.5; // image size
   let padding = 8; // space between
-
+  for (let i = 0; i < images.length; i++) {
+    if (i < 5) {
+      image(images[i], i * (imageSize + padding), 0, imageSize, imageSize); // top row
+    } else if (i < 10) {
+      image(images[i], (i - 4.5) * (imageSize + padding), height - imageSize, imageSize, imageSize); // Bottom row
+    } else if (i < 15) {
+      image(images[i], width - imageSize, (i - 10) * (imageSize + padding), imageSize, imageSize); // right side
+    } else {
+      image(images[i], 0, (i - 15) * (imageSize + padding), imageSize, imageSize); // left side
+    }
+  }
 }
 
 function playYourSound(soundIndex) {
