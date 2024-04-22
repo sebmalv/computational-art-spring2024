@@ -12,7 +12,14 @@ let redTint= 255;
 
 
 let eastCircle, westCircle, northCircle, southCircle;
+let soundFiles = []; 
 
+let soundFileNames = [
+  'garifunaDrums.mp3',
+  'deerSound.mp3',
+  'mayanRitual1.mp3',
+  'indigenousCeremony.mp3'
+];
 let imageNames = [
   './images/imix.jpg', './images/ik.jpg', './images/akbal.jpg', './images/kan.jpg', './images/chikchan.jpg', // daysigns of the Tzolk'in
   './images/kimi.jpg', './images/manik.jpg', './images/lamat.jpg', './images/muluk.jpg', './images/oc.jpg',
@@ -32,6 +39,9 @@ function preload() {
   // image load
   for (let i = 0; i < imageNames.length; i++) {
     images.push(loadImage(imageNames[i]));
+  }
+  for (let i = 0; i < soundFileNames.length; i++) {
+    soundFiles.push(loadSound('./sounds/' + soundFileNames[i]));
   }
 }
 
@@ -99,45 +109,43 @@ function draw() {
   }
 }
 
+function playYourSound(soundIndex) {
+  // Stop any currently playing sound
+  if (soundFiles[soundIndex].isPlaying()) {
+    soundFiles[soundIndex].stop();
+  }
+  // Play the specified sound
+  soundFiles[soundIndex].play();
+}
+
 function eastFunction() {
-
-
-
-  tint(255,255, 0); // Yellow 
+  // Yellow tint
+  tint(255, 255, 0);
   for (let i = 0; i < images.length; i++) {
     image(images[3], 0, 0, width, height);
   }
-
-
-  playYourSound('garifunaDrums.mp3'); //  play the sound
+  // Play sound
+  playYourSound(0); // Index of 'garifunaDrums.mp3'
 }
 
-
-
 function westFunction() {
-
-
-  
-  tint(255, 40, 0); // Red tint
+  // Red tint
+  tint(255, 40, 0);
   for (let i = 0; i < images.length; i++) {
     image(images[6], 0, 0, width, height);
   }
-
-  // Play a sound
-  playYourSound('deerSound.mp3'); // play the sound
+  // Play sound
+  playYourSound(1); 
 }
 
 function northFunction() {
-
-
-  // grey
-  tint(100); 
+  // Grey tint
+  tint(100);
   for (let i = 0; i < images.length; i++) {
     image(images[15], 0, 0, width, height);
   }
-
-  // Play a sound
-  playYourSound('mayanRitual1.mp3'); //play the sound
+  // Play sound
+  playYourSound(2); 
 }
 
 
@@ -172,24 +180,11 @@ function southFunction() {
 
 
   // Play a sound
-  playYourSound('indigenousCeremony.mp3'); 
+  playYourSound(3); 
 
 }
 
 
-
-
-
-function playYourSound(fileName) {
-
-  osc.stop();
-  //  play the specified sound file
-  let soundFile = createAudio(fileName)
-
-  soundFile.play();
-
-  osc.start();
-}
 
 
 
