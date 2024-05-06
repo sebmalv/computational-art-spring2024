@@ -1,0 +1,806 @@
+let matchImagePositions = [
+  { x: 150, y: 300 },
+  { x: 390, y: 300},
+  { x: 650, y: 300 }
+];
+
+let wordTextTime;
+let amountOfTries;
+
+
+
+let nahuaSound = [
+  './sounds/nahuaSound1.mp3', './sounds/nahuatSound2.mp3', './sounds/nahuatSound3.mp3'
+];
+
+let xincaSound = [
+  './sounds/xinca1.mp3', './sounds/xinca2.mp3', './sounds/xinca3.mp3'
+];
+
+let poqomamSound = [
+  './sounds/poqomam1.mp3', './sounds/poqomam2.mp3', './sounds/poqomam3.mp3'
+];
+
+let alaguilacSound = [
+  './sounds/alaguilac1.mp3', './sounds/alaguilac2.mp3', './sounds/alaguilac3.mp3'
+];
+
+let chortiSound = [
+  './sounds/chorti1.mp3', './sounds/chorti2.mp3', './sounds/chorti3.mp3'
+];
+
+let cacaoperaSound = [
+  './sounds/cacaopera1.mp3', './sounds/cacaopera2.mp3', './sounds/cacaopera3.mp3'
+];
+
+let mangueSound = [
+  './sounds/mangue1.mp3', './sounds/mangue2.mp3', './sounds/mangue3.mp3'
+];
+
+let mixeSound = [
+  './sounds/mixe1.mp3', './sounds/mixe2.mp3', './sounds/mixe3.mp3'
+];
+
+let lencaSound = [
+  './sounds/lenca1.mp3', './sounds/lenca2.mp3', './sounds/lenca3.mp3'
+];
+
+
+let nahuaWordImages = [
+  './images/nahua1.jpg', './images/nahua2.jpg', './images/nahua3.jpg'
+];
+
+let xincaWordImages = [
+  './images/xinca1.jpg', './images/xinca2.jpg', './images/xinca3.jpg'
+];
+
+let poqomamWordImages = [
+  './images/poqomam1.jpg', './images/poqomam2.jpg', './images/poqomam3.jpg'
+];
+
+let alaguilacWordImages = [
+  './images/alaguilac1.jpg', './images/chorti2.jpg', './images/alaguilac3.jpg'
+];
+
+let chortiWordImages = [
+  './images/nahua1.jpg', './images/chorti2.jpg', './images/chorti3.jpg'
+];
+
+let cacaoperaWordImages = [
+  './images/cacaopera1.jpg', './images/cacaopera2.jpg', './images/cacaopera3.jpg'
+];
+
+let mangueWordImages = [
+  './images/nahua2.jpg', './images/xinca2.jpg', './images/mangue3.jpg'
+];
+
+let mixeWordImages = [
+  './images/mangue3.jpg', './images/mixe2.jpg', './images/mixe3.jpg'
+];
+
+let lencaWordImages = [
+  './images/lenca1.jpg', './images/lenca2.jpg', './images/lenca3.jpg'
+];
+
+let nahuaWord = [
+  "inakayu", "kuwat", "nulenkuaj"
+
+];
+
+let xincaWord = [
+  "tuhlu", "awa", "ura"
+
+];
+
+let poqomamWord = [
+  "aaq", "ch’eqek", "chee'"
+
+];
+
+let alaguilacWord = [
+  "achko", "inagas", "culut"
+];
+
+let chortiWord = [
+  "chan", "chikin", "liklik"
+  // Add more words as needed for Chorti community
+];
+
+let cacaoperaWord = [
+  "a'mu", "ikila'", "uru"
+
+];
+
+let mangueWord = [
+  "nyuri", "yu", "noji"
+
+];
+
+let mixeWord = [
+  "toodyik", "choon", "mucz"
+
+];
+
+let lencaWord = [
+  "zima", "daku", "upat"
+];
+
+let wordsBeingUsedList;
+let imagesBeingUsedList;
+let soundsBeingUsedList;
+let submitButtonOn;
+let submitButton;
+let soundButton;
+let wordText;
+let userTextOn;
+let userText;
+let placeImages;
+let rightWord;
+let img;
+let buttons= [];
+let calendar;
+let step = 0; // speed
+let buttonPositions = [
+  { x: 270, y: 400 },
+  { x: 160, y: 395 },
+  { x: 250, y: 248 },
+  { x: 339, y: 274 },
+  { x: 385, y: 203 },
+  { x: 696, y: 410 },
+  { x: 760, y: 490 },
+  { x: 180, y: 322 },
+  { x: 545, y: 515 },
+];
+let buttonsOn;
+let imageOn;
+let originalPositions;
+let rightSound;
+
+let communityNames = [
+  "Nahua",
+  "Xinca",
+  "Poqomam",
+  "Alaguilac",
+  "Chorti",
+  "Cacaopera",
+  "Mangue",
+  "Mixe",
+  "Lenca",
+];
+
+let mapColors = [
+  ' blue',
+  "brown",
+  '#425733',
+  "#714423",
+  "#BCE261",
+  "orange",
+  "#003A8C",
+  "teal",
+  "yellow"
+];
+let sizes = [
+  { w: 240, h: 70 },
+  { w: 80, h: 25 },
+  { w: 90, h: 50 },
+  { w: 80, h: 40 },
+  { w: 80, h: 40 },
+  { w: 80, h: 40 },
+  { w: 80, h: 40 },
+  { w: 80, h: 45 },
+  { w: 220, h: 65 },
+];
+
+let fontSize = [
+  '30px', '20px', '15px', '15px', '18PX', '14PX', '18PX', '20px', '40px'
+
+];
+
+
+let communityActions = [
+  nahuaAction,
+  xincaAction,
+  poqomamAction,
+  alaguilacAction,
+  chortiAction,
+  cacaoperaAction,
+  mangueAction,
+  mixeAction,
+  lencaAction
+];
+
+let webcamOn = false; //  track if webcam is on or off
+let filterTexture;
+
+let lastWebcamTime = 0; //  store the time when webcam was turned on
+let helpfulTips;
+let currentIndex= 0;
+let allCommunityImages = [];
+let allCommunitySounds = [];
+let tries=1;
+function preload() {
+  img = loadImage('nativeMap.png');
+  filterTexture = loadImage('mayanPattern.png'); // Load filter texture
+
+  // Arrays to store all community sounds and images
+      // all community images
+      let communityImages = [
+        nahuaWordImages,
+        xincaWordImages,
+        poqomamWordImages,
+        alaguilacWordImages,
+        chortiWordImages,
+        cacaoperaWordImages,
+        mangueWordImages,
+        mixeWordImages,
+        lencaWordImages
+      ];
+      
+      let communitySounds = [
+        nahuaSound,
+        xincaSound,
+        poqomamSound,
+        alaguilacSound,
+        chortiSound,
+        cacaoperaSound,
+        mangueSound,
+        mixeSound,
+        lencaSound
+      ];
+      
+  for (let i = 0; i < communityImages.length; i++) {
+      let imagesList = [];
+      for (let j = 0; j < communityImages[i].length; j++) {
+          let imgPath = communityImages[i][j];
+          let loadedImg = loadImage(imgPath);
+          imagesList.push(loadedImg);
+                      console.log(imagesList);
+      }
+      allCommunityImages.push(imagesList);
+  }
+  for (let i = 0; i < communitySounds.length; i++) {
+      let soundsList = [];
+      for (let j = 0; j < communitySounds[i].length; j++) {
+          let soundPath = communitySounds[i][j];
+          let loadedsound = loadSound(soundPath);
+          soundsList.push(loadedsound);
+          console.log(soundsList);
+      }
+      allCommunitySounds.push(soundsList);
+  }
+
+}
+
+function buttonPressed() {
+// Loop through the list of buttons and hide each one
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].hide();
+}
+}
+
+let backgroundColors = []; // Array to store background colors
+
+function setup() {
+  createCanvas(1000, 800);
+  
+
+  // Define colors
+  let red = color(255, 192, 203); // Pastel red
+  let yellow = color(255, 255, 0); // Yellow
+  let white = color(255); // White
+  let black = color(0); // Black
+
+  // Generate gradient from red to yellow to white to black and back
+    frameRate(5); // Set frame rate to 10 frames per second
+  for (let i = 0; i < 100; i++) {
+    // Interpolate between red and yellow
+    let col1 = lerpColor(red, yellow, i / 100);
+    // Interpolate between yellow and white
+    let col2 = lerpColor(yellow, white, i / 100);
+    // Interpolate between white and black
+    let col3 = lerpColor(white, black, i / 100);
+    // Push colors to backgroundColors array
+    backgroundColors.push(col1, col2);
+  }
+  buttonsOn = true;
+  imageOn= true;
+  submitButtonOn= false;
+  amountOfTries=0;
+  userTextOn= false;
+  for (let m = 0; m < communityNames.length; m++) {
+            let buttonVar= drawButton(buttonPositions[m].x, buttonPositions[m].y, communityNames[m], sizes[m].w, sizes[m].h, mapColors[m], fontSize[m], communityActions[m]);
+            buttons.push(buttonVar); 
+      }
+  buttonPressed();
+  // Initialize the submit button
+  submitButton = drawButton(450, 500, 'Submit', 70, 30, '#FFB6C1 ', '15xp', checkIfWin);
+  // Initialize the submit button
+  soundButton = drawButton(220, 500, 'Play Word', 50, 40, '#FFB6C1', '10xp', playSound);
+  soundButton.hide(); // Hide the soundButton initially
+  // Calculate the position for the userInput input box
+  let submitButtonX = submitButton.position().x;
+  let submitButtonY = submitButton.position().y;
+  let userInputX = submitButtonX-40;
+  let userInputY = submitButtonY + submitButton.height + 10; // Add some padding
+  // Initialize the userInput input box
+  userInput = createInput();
+  userInput.position(userInputX, userInputY); // Set position directly below submitButton
+  userInput.value('Type Here!')
+  userInput.style('background-image', 'linear-gradient(to right, #FFB6C1 50%, #FFFF99 50%)');
+  userInput.hide(); // Hide the userInput input box
+  // Initialize the text box
+  wordText = createInput();
+  wordText.position(260, 200);
+  wordText.style('font-size', '40px'); // Set font size
+  wordText.style('background-image', 'url("mayanPattern.png")'); // Set background image
+  wordText.style('background-size', 'cover'); // Ensure the background image covers the entire text box
+  wordText.style('text-align', 'center'); // Center-align the text
+  wordText.style('font-weight', 'bold'); // Make the text bold
+  wordText.hide(); // Hide the text box initially
+
+// Initialize the text box
+helpfulTips = createInput();
+helpfulTips.position(260, 600);
+helpfulTips.style('font-size', '10px'); // Set font size
+
+// Apply background gradient
+// Apply background gradient with pastel colors
+helpfulTips.style('background-image', 'linear-gradient(to right, #FFB6C1 50%, #FFFF99 50%)');
+// Set width and height
+helpfulTips.size(100, 50);
+helpfulTips.style('font-size', '10px'); // Set font size to 12 pixels
+helpfulTips.style('background-size', 'cover'); // Ensure the background image covers the entire text box
+helpfulTips.style('text-align', 'center'); // Center-align the text
+helpfulTips.style('width', '100%'); // Ensure text fits within the box
+
+helpfulTips.style('font-weight', 'bold'); // Make the text bold
+helpfulTips.hide(); // Hide the text box initially
+
+  // Hide the submit button
+  submitButton.hide();
+  
+
+
+  cursor('pointer'); // Set custom cursor image
+
+  img.resize(700, 500);
+
+  // Calculate the position to place the main image in the middle of the canvas
+  let mainImgX = (width - img.width) / 2;
+  let mainImgY = (height - img.height) / 2;
+
+  // Display the main image
+  image(img, mainImgX, mainImgY);
+
+  // Create calendar object after all images are loaded
+  calendar = new Calendar();
+  calendar.calendarPositions();
+  originalPositions = calendar.positions;
+
+  // Initialize webcam
+  webcam = createCapture(VIDEO);
+  webcam.hide(); // Hide the default webcam video element
+}
+
+function draw() {
+  // Set background color based on frame count
+  let index = frameCount % backgroundColors.length;
+  background(backgroundColors[index]);
+  // Your other drawing code goes here
+}
+
+
+function buttonShowing() {
+// Loop through the list of buttons and hide each one
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].show();
+}
+}
+class Calendar {
+  constructor() {
+      this.images = [];
+      this.imageNames = [
+          "imix.jpg", "ik.jpg", "akbal.jpg", "kan.jpg", "chikchan.jpg",
+          "kimi.jpg", "manik.jpg", "lamat.jpg", "muluk.jpg", "oc.jpg",
+          "chuen.jpg", "eb.jpg", "ben.jpg", "ix.jpg", "men.jpg",
+          "kib.jpg", "kaban.jpg", "etznab.jpg", "kawak.jpg", "ahua.jpg"
+      ];
+      this.spacing = 100;
+      this.imgWidth = 100;
+      this.imgHeight = 100;
+      this.numRows = 5;
+      this.numCols = 4;
+      this.positions = [];
+
+      // Load calendar images
+      for (let i = 0; i < this.imageNames.length; i++) {
+          this.images.push(loadImage(this.imageNames[i]));
+      }
+  }
+
+  calendarPositions() {
+
+      // Calculate positions for top row
+      for (let i = 0; i < this.numCols; i++) {
+          let x = 150 + i * (this.imgWidth + this.spacing + 20);
+          let y = 0;
+          this.positions.push({ x, y });
+      }
+
+      // Calculate positions for bottom row
+      for (let i = 0; i < this.numCols; i++) {
+          let x = 130 + i * (this.imgWidth + this.spacing + 20);
+          let y = 800 - this.imgHeight; // Adjust y position for bottom row
+          this.positions.push({ x, y });
+      }
+
+      // Calculate positions for left column
+      for (let i = 1; i < this.numRows - 1; i++) {
+          let x = 0;
+          let y = i * (this.imgHeight + this.spacing);
+          this.positions.push({ x, y });
+      }
+
+      // Calculate positions for right column
+      for (let i = 1; i < this.numRows - 1; i++) {
+          let x = 1000 - this.imgWidth; // Adjust x position for right column
+          let y = i * (this.imgHeight + this.spacing);
+          this.positions.push({ x, y });
+      }
+  }
+
+  moveAlongBorder() {
+      for (let i = 0; i < this.positions.length; i++) {
+          let pos = this.positions[i];
+          let moveDirection = this.calculateMoveDirection(pos);
+
+          // Update position based on move direction
+          switch (moveDirection) {
+              case 'right':
+                  pos.x = min(pos.x + step, width - this.imgWidth);
+                  break;
+              case 'down':
+                  pos.y = min(pos.y + step, height - this.imgHeight);
+                  break;
+              case 'left':
+                  pos.x = max(pos.x - step, 0);
+                  break;
+              case 'up':
+                  pos.y = max(pos.y - step, 0);
+                  break;
+          }
+      }
+  }
+
+  calculateMoveDirection(pos) {
+      if (pos.y === 0 && pos.x < width - this.imgWidth) {
+          return 'right';
+      } else if (pos.x === width - this.imgWidth && pos.y < height - this.imgHeight) {
+          return 'down';
+      } else if (pos.y === height - this.imgHeight && pos.x > 0) {
+          return 'left';
+      } else if (pos.x === 0 && pos.y > 0) {
+          return 'up';
+      }
+  }
+
+  display() {
+
+      for (let i = 0; i < this.positions.length; i++) {
+          let imgIndex = i % this.images.length;
+
+          image(this.images[imgIndex], this.positions[i].x, this.positions[i].y, this.imgWidth, this.imgHeight);
+      }
+      this.moveAlongBorder();
+  }
+}
+
+function drawButton(x, y, label, sizeOfx, sizeOfy, colors, fontsize, action) {
+  let button = createButton(label);
+  button.position(x, y);
+  button.size(sizeOfx, sizeOfy)
+  button.style('background-color', colors);
+  button.style('font-size', fontsize);
+  button.style('border-radius', '8px'); // Rounded corners
+  button.mousePressed(action); // Assign action to button click
+  return button
+}
+
+let colorIndex = 0;
+function draw() {
+ // Index to track current background color
+  // Set background color based on frame count
+  colorIndex = (colorIndex + 1) % backgroundColors.length;
+  background(backgroundColors[colorIndex]);
+
+  let mainImgX = (width - img.width) / 2;
+  let mainImgY = (height - img.height) / 2;
+  if (imageOn) {
+      image(img, mainImgX, mainImgY); // Redraw the original image in the middle
+  }
+  if (!imageOn) { // Redraw the original image in the middle
+  }
+  calendar.display();
+  
+  // Hide buttons if not enabled
+  if (!buttonsOn) {
+      buttonPressed();
+  }
+
+  // Draw buttons if enabled
+  if (buttonsOn) {
+      buttonShowing();
+  }
+ if (webcamOn) {
+        // Place webcam feed at each original position
+        for (let i = 0; i < originalPositions.length; i++) {
+            let pos = originalPositions[i];
+            // Draw the webcam feed
+            image(webcam, pos.x, pos.y, calendar.imgWidth, calendar.imgHeight);
+            // Apply the filter texture
+            tint(255, 100); // Adjust transparency as needed
+            image(filterTexture, pos.x, pos.y, calendar.imgWidth, calendar.imgHeight);
+            noTint(); // Reset tint
+            buttonsOn= false;
+            imageOn= false;
+            placeImages= true;
+            submitButtonOn= true;
+        }
+        
+        // Check if 1 minute has passed since webcam was turned on
+        if (millis() - lastWebcamTime > 5000) {
+            webcamOn = false; // Turn off the webcam
+            lastWebcamTime = 0; // Reset lastWebcamTime
+            
+        }
+    }
+  
+  // Check if images need to be placed
+  if (placeImages) {
+      for (let i = 0; i < 3; i++) {
+          let imgIndex = i;
+          let positionIndex = i;
+          let pos = matchImagePositions[positionIndex];
+          let img = imagesBeingUsedList[i];
+
+          // Place the image at the specified position
+          image(img, pos.x, pos.y, 200, 200);
+      }
+      
+      // Show necessary elements for input
+      soundButton.show();
+      submitButton.show();
+      userInput.show();
+      wordText.show();
+      helpfulTips.show();
+      helpfulTips.value("Memorize the word, submit it and see if you're right! Play the word if you need help.");
+      
+      // Hide the wordText after 6 seconds
+      if (millis() - wordTextTime > 6000) {
+          wordText.hide();
+      }
+  } else {
+      // Hide unnecessary elements for input
+      submitButton.hide();
+      userInput.hide();
+      soundButton.hide();
+      helpfulTips.hide();
+      wordText.hide();
+      
+      // Reset tries and currentIndex
+      tries = 1;
+      currentIndex = 0;
+  }
+}
+
+
+
+
+function setImagesAndWordsList(number) {
+  switch (number) {
+      case 0:
+          imagesBeingUsedList = allCommunityImages[0];
+          wordsBeingUsedList = nahuaWord;
+          soundsBeingUsedList = allCommunitySounds[0]; // Load Nahuasounds
+          rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 1:
+          imagesBeingUsedList = allCommunityImages[1];
+          wordsBeingUsedList = xincaWord;
+          soundsBeingUsedList = allCommunitySounds[1]; // Load Xinca sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 2:
+          imagesBeingUsedList = allCommunityImages[2];
+          wordsBeingUsedList = poqomamWord;
+          soundsBeingUsedList = allCommunitySounds[2]; // Load Poqomam sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 3:
+          imagesBeingUsedList = allCommunityImages[3];
+          wordsBeingUsedList = alaguilacWord;
+          soundsBeingUsedList = allCommunitySounds[3]; // Load Alaguilac sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 4:
+          imagesBeingUsedList = allCommunityImages[4];
+          wordsBeingUsedList = chortiWord;
+          soundsBeingUsedList = allCommunitySounds[4]; // Load Chorti sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 5:
+          imagesBeingUsedList = allCommunityImages[5];
+          wordsBeingUsedList = cacaoperaWord;
+          soundsBeingUsedList = allCommunitySounds[5]; // Load Cacaopera sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 6:
+          imagesBeingUsedList = allCommunityImages[6];
+          wordsBeingUsedList = mangueWord;
+          soundsBeingUsedList = allCommunitySounds[6]; // Load Mangue sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 7:
+          imagesBeingUsedList = allCommunityImages[7];
+          wordsBeingUsedList = mixeWord;
+          soundsBeingUsedList = allCommunitySounds[7]; // Load Mixe sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      case 8:
+          imagesBeingUsedList = allCommunityImages[8];
+          wordsBeingUsedList = lencaWord;
+          soundsBeingUsedList = allCommunitySounds[8]; // Load Lenca sounds
+          rightWord = wordsBeingUsedList[0];
+          rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
+          break;
+      default:
+          console.log("Invalid number input.");
+          return;
+  }
+}
+
+
+function checkIfWin(){
+
+
+  // Compare the user input to the right word
+  if (userInput.value() === rightWord) {
+      // If the input is correct, add 0.5 to the step
+      step += 15;
+      helpfulTips.value("Great job! You got it right! Moving on to the next word.");
+  } else {
+      // If the input is incorrect and step is greater than 0, subtract 0.5 from the step
+      if (step > 0) {
+          step -= 1;
+      }
+      helpfulTips.value("Oops! That's wrong. Let's try the next one!");
+  }
+      userInput.value("Type Here!");
+      currentIndex++;
+      rightWord = wordsBeingUsedList[currentIndex];
+      rightSound = soundsBeingUsedList[currentIndex];
+  // Check if rightWord is undefined
+  if (rightWord === undefined) {
+      // Update flags accordingly
+      console.log(rightWord);
+      buttonsOn = true;
+      placeImages = false;
+      submitButtonOn = false;
+      imageOn = true;
+      wordText.hide();
+  } else {
+      // Increment currentIndex and update rightWord and rightSound
+      
+      // Show the wordText with the new rightWord
+      wordText.value(rightWord);
+      wordText.show(); // Show the wordText
+      // Hide the wordText after 10 seconds
+      wordTextTime = millis();
+  }
+}
+
+
+function nahuaAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(0);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function xincaAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(1);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function poqomamAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(2);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function alaguilacAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(3);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function chortiAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(4);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function cacaoperaAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(5);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function mangueAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(6);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function mixeAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(7);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+function lencaAction() {
+  placeImages= true;
+  imageOn= false;
+  buttonsOn= false;
+  setImagesAndWordsList(8);
+  webcamOn = true;
+  lastWebcamTime = millis();
+  wordTextTime= millis(); 
+}
+
+
+function playSound() {
+let sound = rightSound;
+sound.play();
+}
