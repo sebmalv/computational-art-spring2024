@@ -277,27 +277,23 @@ for (let i = 0; i < buttons.length; i++) {
 }
 }
 
-let backgroundColors = []; // Array to store background colors
+let backgroundColors = []; 
 
 function setup() {
   createCanvas(1000, 800);
-  
+  frameRate(5);
 
-  // Define colors
-  let red = color(255, 192, 203); // Pastel red
-  let yellow = color(255, 255, 0); // Yellow
-  let white = color(255); // White
-  let black = color(0); // Black
 
-  for (let i = 0; i < 100; i++) {
-    // Interpolate between red and yellow
-    let col1 = lerpColor(red, yellow, i / 100);
-    // Interpolate between yellow and white
-    let col2 = lerpColor(yellow, white, i / 100);
-    // Interpolate between white and black
-    let col3 = lerpColor(white, black, i / 100);
-    // Push colors to backgroundColors array
-    backgroundColors.push(col1, col2);
+  let red = color(255, 83, 123); 
+  let yellow = color(255, 200, 140); 
+  let blue= color(143,160,252); 
+  let purple = color(172,60,134); 
+
+  for (let i = 0; i < 1000; i++) {
+    let col1 = lerpColor(red, yellow, i / 300);
+    let col2 = lerpColor(purple,blue, i / 300);
+    let col3 = lerpColor(blue, red, i / 300);
+    backgroundColors.push(col1, col2,col3);
   }
   buttonsOn = true;
   imageOn= true;
@@ -337,7 +333,7 @@ function setup() {
 
 // Initialize the text box
 helpfulTips = createInput();
-helpfulTips.position(240, 600);
+helpfulTips.position(190, 600);
 helpfulTips.style('font-size', '10px'); // Set font size
 
 // Apply background gradient
@@ -347,7 +343,7 @@ helpfulTips.style('background-image', 'linear-gradient(to right, #FFB6C1 50%, #F
 helpfulTips.size(60, 50);
 helpfulTips.style('font-size', '10px'); // Set font size to 12 pixels
 helpfulTips.style('text-align', 'center'); 
-helpfulTips.style('width', '50%'); 
+helpfulTips.style('width', '40%'); 
 
 helpfulTips.style('font-weight', 'bold'); // Make the text bold
 helpfulTips.hide(); // Hide the text box initially
