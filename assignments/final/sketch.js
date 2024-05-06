@@ -14,15 +14,15 @@ let nahuaSound = [
 ];
 
 let xincaSound = [
-  './sounds/xinca1.mp3', './sounds/xinca2.mp3', './sounds/xinca3.mp3'
+  './sounds/xinca1.mp4', './sounds/xinca2.mp4', './sounds/xinca3.mp4'
 ];
 
 let poqomamSound = [
-  './sounds/poqomam1.mp3', './sounds/poqomam2.mp3', './sounds/poqomam3.mp3'
+  './sounds/poqomam1.mp4', './sounds/poqomam2.mp4', './sounds/poqomam3.mp4'
 ];
 
 let alaguilacSound = [
-  './sounds/alaguilac1.mp3', './sounds/alaguilac2.mp3', './sounds/alaguilac3.mp3'
+  './sounds/alaguilac1.mp4', './sounds/alaguilac2.mp4', './sounds/alaguilac3.mp4'
 ];
 
 let chortiSound = [
@@ -30,19 +30,19 @@ let chortiSound = [
 ];
 
 let cacaoperaSound = [
-  './sounds/cacaopera1.mp3', './sounds/cacaopera2.mp3', './sounds/cacaopera3.mp3'
+  './sounds/cacaopera1.mp4', './sounds/cacaopera2.mp4', './sounds/cacaopera3.mp4'
 ];
 
 let mangueSound = [
-  './sounds/mangue1.mp3', './sounds/mangue2.mp3', './sounds/mangue3.mp3'
+  './sounds/mangue1.mp4', './sounds/mangue2.mp4', './sounds/mangue3.mp4'
 ];
 
 let mixeSound = [
-  './sounds/mixe1.mp3', './sounds/mixe2.mp3', './sounds/mixe3.mp3'
+  './sounds/mixe1.mp4', './sounds/mixe2.mp4', './sounds/mixe3.mp4'
 ];
 
 let lencaSound = [
-  './sounds/lenca1.mp3', './sounds/lenca2.mp3', './sounds/lenca3.mp3'
+  './sounds/lenca1.mp4', './sounds/lenca2.mp4', './sounds/lenca3.mp4'
 ];
 
 
@@ -103,7 +103,7 @@ let alaguilacWord = [
 
 let chortiWord = [
   "chan", "chikin", "liklik"
-  // Add more words as needed for Chorti community
+
 ];
 
 let cacaoperaWord = [
@@ -219,8 +219,8 @@ let allCommunityImages = [];
 let allCommunitySounds = [];
 let tries=1;
 function preload() {
-  img = loadImage('nativeMap.png');
-  filterTexture = loadImage('mayanPattern.png'); // Load filter texture
+  img = loadImage('./images/nativeMap.png');
+  filterTexture = loadImage('./images/mayanPatterns.jpg'); // Load filter texture
 
   // Arrays to store all community sounds and images
       // all community images
@@ -247,7 +247,6 @@ function preload() {
         mixeSound,
         lencaSound
       ];
-      
   for (let i = 0; i < communityImages.length; i++) {
       let imagesList = [];
       for (let j = 0; j < communityImages[i].length; j++) {
@@ -290,8 +289,6 @@ function setup() {
   let white = color(255); // White
   let black = color(0); // Black
 
-  // Generate gradient from red to yellow to white to black and back
-    frameRate(5); // Set frame rate to 10 frames per second
   for (let i = 0; i < 100; i++) {
     // Interpolate between red and yellow
     let col1 = lerpColor(red, yellow, i / 100);
@@ -332,7 +329,7 @@ function setup() {
   wordText = createInput();
   wordText.position(260, 200);
   wordText.style('font-size', '40px'); // Set font size
-  wordText.style('background-image', 'url("mayanPattern.png")'); // Set background image
+  wordText.style('background-image', 'url("./images/mayanPatterns.jpg")'); // Set background image
   wordText.style('background-size', 'cover'); // Ensure the background image covers the entire text box
   wordText.style('text-align', 'center'); // Center-align the text
   wordText.style('font-weight', 'bold'); // Make the text bold
@@ -340,18 +337,17 @@ function setup() {
 
 // Initialize the text box
 helpfulTips = createInput();
-helpfulTips.position(260, 600);
+helpfulTips.position(240, 600);
 helpfulTips.style('font-size', '10px'); // Set font size
 
 // Apply background gradient
 // Apply background gradient with pastel colors
 helpfulTips.style('background-image', 'linear-gradient(to right, #FFB6C1 50%, #FFFF99 50%)');
 // Set width and height
-helpfulTips.size(100, 50);
+helpfulTips.size(60, 50);
 helpfulTips.style('font-size', '10px'); // Set font size to 12 pixels
-helpfulTips.style('background-size', 'cover'); // Ensure the background image covers the entire text box
-helpfulTips.style('text-align', 'center'); // Center-align the text
-helpfulTips.style('width', '100%'); // Ensure text fits within the box
+helpfulTips.style('text-align', 'center'); 
+helpfulTips.style('width', '50%'); 
 
 helpfulTips.style('font-weight', 'bold'); // Make the text bold
 helpfulTips.hide(); // Hide the text box initially
@@ -365,29 +361,23 @@ helpfulTips.hide(); // Hide the text box initially
 
   img.resize(700, 500);
 
-  // Calculate the position to place the main image in the middle of the canvas
+  // 
   let mainImgX = (width - img.width) / 2;
   let mainImgY = (height - img.height) / 2;
 
-  // Display the main image
+  // the main image
   image(img, mainImgX, mainImgY);
 
-  // Create calendar object after all images are loaded
+
   calendar = new Calendar();
   calendar.calendarPositions();
   originalPositions = calendar.positions;
 
   // Initialize webcam
   webcam = createCapture(VIDEO);
-  webcam.hide(); // Hide the default webcam video element
+  webcam.hide(); 
 }
 
-function draw() {
-  // Set background color based on frame count
-  let index = frameCount % backgroundColors.length;
-  background(backgroundColors[index]);
-  // Your other drawing code goes here
-}
 
 
 function buttonShowing() {
@@ -400,10 +390,10 @@ class Calendar {
   constructor() {
       this.images = [];
       this.imageNames = [
-          "imix.jpg", "ik.jpg", "akbal.jpg", "kan.jpg", "chikchan.jpg",
-          "kimi.jpg", "manik.jpg", "lamat.jpg", "muluk.jpg", "oc.jpg",
-          "chuen.jpg", "eb.jpg", "ben.jpg", "ix.jpg", "men.jpg",
-          "kib.jpg", "kaban.jpg", "etznab.jpg", "kawak.jpg", "ahua.jpg"
+        './images/imix.jpg', './images/ik.jpg', './images/akbal.jpg', './images/kan.jpg', './images/chikchan.jpg', // daysigns of the Tzolk'in
+        './images/kimi.jpg', './images/manik.jpg', './images/lamat.jpg', './images/muluk.jpg', './images/oc.jpg',
+        './images/chuen.jpg', './images/eb.jpg', './images/ben.jpg', './images/ix.jpg', './images/men.jpg',
+        './images/kib.jpg', './images/kaban.jpg', './images/etznab.jpg', './images/kawak.jpg', './images/ahua.jpg'
       ];
       this.spacing = 100;
       this.imgWidth = 100;
@@ -501,8 +491,8 @@ function drawButton(x, y, label, sizeOfx, sizeOfy, colors, fontsize, action) {
   button.size(sizeOfx, sizeOfy)
   button.style('background-color', colors);
   button.style('font-size', fontsize);
-  button.style('border-radius', '8px'); // Rounded corners
-  button.mousePressed(action); // Assign action to button click
+  button.style('border-radius', '8px'); 
+  button.mousePressed(action); 
   return button
 }
 
@@ -596,6 +586,7 @@ function draw() {
 
 
 
+
 function setImagesAndWordsList(number) {
   switch (number) {
       case 0:
@@ -611,6 +602,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = xincaWord;
           soundsBeingUsedList = allCommunitySounds[1]; // Load Xinca sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       case 2:
@@ -618,6 +610,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = poqomamWord;
           soundsBeingUsedList = allCommunitySounds[2]; // Load Poqomam sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       case 3:
@@ -625,6 +618,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = alaguilacWord;
           soundsBeingUsedList = allCommunitySounds[3]; // Load Alaguilac sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       case 4:
@@ -632,6 +626,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = chortiWord;
           soundsBeingUsedList = allCommunitySounds[4]; // Load Chorti sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       case 5:
@@ -639,6 +634,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = cacaoperaWord;
           soundsBeingUsedList = allCommunitySounds[5]; // Load Cacaopera sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       case 6:
@@ -646,6 +642,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = mangueWord;
           soundsBeingUsedList = allCommunitySounds[6]; // Load Mangue sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       case 7:
@@ -653,6 +650,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = mixeWord;
           soundsBeingUsedList = allCommunitySounds[7]; // Load Mixe sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       case 8:
@@ -660,6 +658,7 @@ function setImagesAndWordsList(number) {
           wordsBeingUsedList = lencaWord;
           soundsBeingUsedList = allCommunitySounds[8]; // Load Lenca sounds
           rightWord = wordsBeingUsedList[0];
+          wordText.value(rightWord);
           rightSound = soundsBeingUsedList[0]; // Assign the corresponding sound
           break;
       default:
@@ -682,6 +681,9 @@ function checkIfWin(){
       if (step > 0) {
           step -= 1;
       }
+      if (step > 10) {
+        step -= 10;
+    }
       helpfulTips.value("Oops! That's wrong. Let's try the next one!");
   }
       userInput.value("Type Here!");
@@ -730,6 +732,7 @@ function xincaAction() {
 }
 
 function poqomamAction() {
+
   placeImages= true;
   imageOn= false;
   buttonsOn= false;
